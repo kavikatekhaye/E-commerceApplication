@@ -1,136 +1,104 @@
-@extends('layouts.master')
+@extends('backend.layouts.master')
 @section('content')
 
-<div class="main-panel">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar bar1"></span>
-                    <span class="icon-bar bar2"></span>
-                    <span class="icon-bar bar3"></span>
-                </button>
-                <a class="navbar-brand" href="#">Dashboard</a>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-warning text-center">
+                                    <i class="ti-eye"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Total Visitors</p>
+                                    11022
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr/>
+                            <div class="stats">
+                                <i class="ti-panel"></i> Details
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="ti-settings"></i>
-                            <p>Account</p>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-success text-center">
+                                    <i class="ti-archive"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Products</p>
+                                    $1,345
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr/>
+                            <div class="stats">
+                                <i class="ti-panel"></i> Details
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </nav>
-
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="content">
-                            <div class="row">
-                                <div class="col-xs-5">
-                                    <div class="icon-big icon-warning text-center">
-                                        <i class="ti-eye"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xs-7">
-                                    <div class="numbers">
-                                        <p>Total Visitors</p>
-                                        11022
-                                    </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-danger text-center">
+                                    <i class="ti-shopping-cart-full"></i>
                                 </div>
                             </div>
-                            <div class="footer">
-                                <hr/>
-                                <div class="stats">
-                                    <i class="ti-panel"></i> Details
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Orders</p>
+                                    23
                                 </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr/>
+                            <div class="stats">
+                                <i class="ti-panel"></i> Details
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="content">
-                            <div class="row">
-                                <div class="col-xs-5">
-                                    <div class="icon-big icon-success text-center">
-                                        <i class="ti-archive"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xs-7">
-                                    <div class="numbers">
-                                        <p>Products</p>
-                                        $1,345
-                                    </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-info text-center">
+                                    <i class="ti-user"></i>
                                 </div>
                             </div>
-                            <div class="footer">
-                                <hr/>
-                                <div class="stats">
-                                    <i class="ti-panel"></i> Details
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Users</p>
+                                    45
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="content">
-                            <div class="row">
-                                <div class="col-xs-5">
-                                    <div class="icon-big icon-danger text-center">
-                                        <i class="ti-shopping-cart-full"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xs-7">
-                                    <div class="numbers">
-                                        <p>Orders</p>
-                                        23
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="footer">
-                                <hr/>
-                                <div class="stats">
-                                    <i class="ti-panel"></i> Details
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="content">
-                            <div class="row">
-                                <div class="col-xs-5">
-                                    <div class="icon-big icon-info text-center">
-                                        <i class="ti-user"></i>
-                                    </div>
-                                </div>
-                                <div class="col-xs-7">
-                                    <div class="numbers">
-                                        <p>Users</p>
-                                        45
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="footer">
-                                <hr/>
-                                <div class="stats">
-                                    <i class="ti-panel"></i> Details
-                                </div>
+                        <div class="footer">
+                            <hr/>
+                            <div class="stats">
+                                <i class="ti-panel"></i> Details
                             </div>
                         </div>
                     </div>
@@ -138,35 +106,5 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <div class="container-fluid">
-            <nav class="pull-left">
-                <ul>
-
-                    <li>
-                        <a href="">
-                            Contact
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            Blog
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            Licenses
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="copyright pull-right">
-                &copy;
-                <script>document.write(new Date().getFullYear())</script>
-                , made with <i class="fa fa-heart heart"></i> by <a href="">Javed</a>
-            </div>
-        </div>
-    </footer>
-
 </div>
 @endsection
