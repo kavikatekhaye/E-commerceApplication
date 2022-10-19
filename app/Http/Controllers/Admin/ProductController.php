@@ -77,5 +77,9 @@ public function update(Request $request,$id){
         $data->delete();
         return redirect()->route('admin.product.table')->with('msg','Date Deleted Successfully!');
     }
+    public function detail($id){
+        $data=Product::find($id);
+        return view('backend.admin.product.detail',compact('data'));
 
+    }
 }

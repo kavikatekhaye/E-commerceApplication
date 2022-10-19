@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +30,16 @@ Route::get('admin/product/table',[ProductController::class,'table'])->name('admi
 Route::get('admin/product/edit/{id}',[ProductController::class,'edit'])->name('admin.product.edit');
 Route::post('admin/product/update/{id}',[ProductController::class,'update'])->name('admin.product.update');
 Route::get('admin/product/delete/{id}',[ProductController::class,'delete'])->name('admin.product.delete');
+Route::get('admin/product/detail/{id}',[ProductController::class,'detail'])->name('admin.product.detail');
+
+
+// OrderController
+Route::get('admin/order/table',[OrderController::class,'table'])->name('admin.order.table');
+Route::get('admin/order/detail/{id}',[OrderController::class,'detail'])->name('admin.order.detail');
+
+// UserControllerRoute
+Route::get('admin/user/table',[UserController::class,'table'])->name('admin.user.table');
+Route::get('admin/user/detail/{id}',[UserController::class,'detail'])->name('admin.user.detail');
+
+
+

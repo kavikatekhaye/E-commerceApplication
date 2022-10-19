@@ -1,121 +1,63 @@
+
+
+
 @extends('backend.layouts.master')
 @section('content')
 
 
-<div class="content table-responsive table-full-width">
-    <div class="pagetitle">
-        <h1>Blog Table</h1>
-        @if (session()->has('msg'))
-        <div class="alert alert-success">
-           {{session()->get('msg')}}
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    @if (session()->has('msg'))
+                    <div class="alert alert-success">
+                       {{session()->get('msg')}}
+                    </div>
+                    @endif
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">All Products</h4>
+                                <p class="category">List of all stock</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th> Product ID</th>
+                                        <th> Product Name</th>
+                                        <th> Product Price</th>
+                                        <th> Product Desc</th>
+                                        <th>Product Image</th>
+                                        <th> ProductActions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data as $d)
+                                    <tr>
+                                        <td>{{$d->id}}</td>
+                                        <td>{{$d->name}}</td>
+                                        <td>{{$d->price}}</td>
+                                        <td>{!!$d->description!!}</td>
+                                        <td><img src="{{asset('uploads/'.$d->image)}}" alt="" class="img-thumbnail"
+                                                 style="width: 50px"></td>
+                                        <td>
+                                           <a href="{{route('admin.product.edit',$d->id)}}"><button class="btn btn-sm btn-info ti-pencil-alt"  title="Edit"></button></a>
+                                           <a href="{{route('admin.product.delete',$d->id)}}"> <button class="btn btn-sm btn-danger ti-trash" title="Delete"></button></a>
+                                            <a href="{{route('admin.product.detail',$d->id)}}"><button class="btn btn-sm btn-primary ti-view-list-alt" title="Details"></button></a>
+
+                                        </td>
+
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                {{$data->links()}}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        @endif
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Desc</th>
-            <th>Image</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach ($data as $d)
-        <tr>
-            <td>{{$d->id}}</td>
-            <td>{{$d->name}}</td>
-            <td>{{$d->price}}</td>
-            <td>{!!$d->description!!}</td>
-            <td><img src="{{asset('uploads/'.$d->image)}}" alt="" class="img-thumbnail"
-                     style="width: 50px"></td>
-            <td>
-               <a href="{{route('admin.product.edit',$d->id)}}"><button class="btn btn-sm btn-info ti-pencil-alt"  title="Edit"></button></a>
-               <a href="{{route('admin.product.delete',$d->id)}}"> <button class="btn btn-sm btn-danger ti-trash" title="Delete"></button></a>
-                <button class="btn btn-sm btn-primary ti-view-list-alt"
-                        title="Details"></button>
-            </td>
-
-
-        {{-- </tr>
-        <tr>
-            <td>2</td>
-            <td>Minerva Hooper</td>
-            <td>$23,789</td>
-            <td>Curaçao</td>
-            <td><img src="assets/img/favicon.png" alt="" class="img-thumbnail"
-                     style="width: 50px"></td>
-            <td>
-                <button class="btn btn-sm btn-info ti-pencil-alt" title="Edit"></button>
-                <button class="btn btn-sm btn-danger ti-trash" title="Delete"></button>
-                <button class="btn btn-sm btn-primary ti-view-list-alt"
-                        title="Details"></button>
-            </td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Sage Rodriguez</td>
-            <td>$56,142</td>
-            <td>Netherlands</td>
-            <td><img src="assets/img/favicon.png" alt="" class="img-thumbnail"
-                     style="width: 50px"></td>
-            <td>
-                <button class="btn btn-sm btn-info ti-pencil-alt" title="Edit"></button>
-                <button class="btn btn-sm btn-danger ti-trash" title="Delete"></button>
-                <button class="btn btn-sm btn-primary ti-view-list-alt"
-                        title="Details"></button>
-            </td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Philip Chaney</td>
-            <td>$38,735</td>
-            <td>Korea, South</td>
-            <td><img src="assets/img/favicon.png" alt="" class="img-thumbnail"
-                     style="width: 50px"></td>
-            <td>
-                <button class="btn btn-sm btn-info ti-pencil-alt" title="Edit"></button>
-                <button class="btn btn-sm btn-danger ti-trash" title="Delete"></button>
-                <button class="btn btn-sm btn-primary ti-view-list-alt"
-                        title="Details"></button>
-            </td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Doris Greene</td>
-            <td>$63,542</td>
-            <td>Malawi</td>
-            <td><img src="assets/img/favicon.png" alt="" class="img-thumbnail"
-                     style="width: 50px"></td>
-            <td>
-                <button class="btn btn-sm btn-info ti-pencil-alt" title="Edit"></button>
-                <button class="btn btn-sm btn-danger ti-trash" title="Delete"></button>
-                <button class="btn btn-sm btn-primary ti-view-list-alt"
-                        title="Details"></button>
-            </td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Mason Porter</td>
-            <td>$78,615</td>
-            <td>Chile</td>
-            <td><img src="assets/img/favicon.png" alt="" class="img-thumbnail"
-                     style="width: 50px"></td>
-            <td>
-                <button class="btn btn-sm btn-info ti-pencil-alt" title="Edit"></button>
-                <button class="btn btn-sm btn-danger ti-trash" title="Delete"></button>
-                <button class="btn btn-sm btn-primary ti-view-list-alt"
-                        title="Details"></button>
-            </td>
-        </tr> --}}
-
-    </tr>
-    @endforeach
-        </tbody>
-    </table>
-    {{$data->links()}}
-
-</div>
-@endsection
+        @endsection
