@@ -18,7 +18,7 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">All Products</h4>
-                                <p class="category">List of all stock</p>
+                                <p class="category"> </p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">

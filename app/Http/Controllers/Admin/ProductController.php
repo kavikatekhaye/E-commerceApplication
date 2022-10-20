@@ -51,7 +51,7 @@ public function update(Request $request,$id){
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'image' => 'required',
+            
 
         ]);
 
