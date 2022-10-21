@@ -92,8 +92,9 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Logout</a></li>
+                                <li><a href="">Profile</a> </li>
+                                <li><a href="">{{Auth::user()->name??''}}</a></li>
+                                <li><a href="{{route('logout')}}">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
