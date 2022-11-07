@@ -9,7 +9,8 @@ use App\Models\Order;
 class OrderController extends Controller
 {
  public function table(){
-    $data = order::paginate(3);
+    $data = order::with('user','product')->paginate(3);
+    // dd($data);
     return view('backend.admin.order.table',compact('data'));
  }
  public function detail($id){

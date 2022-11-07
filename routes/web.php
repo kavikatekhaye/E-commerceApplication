@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
+ use App\Http\Controllers\Admin\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,8 @@ Route::get('admin/order/detail/{id}',[OrderController::class,'detail'])->name('a
 // UserControllerRoute
 Route::get('admin/user/table',[UserController::class,'table'])->name('admin.user.table')->middleware('auth');
 Route::get('admin/user/detail/{id}',[UserController::class,'detail'])->name('admin.user.detail')->middleware('auth');
+Route::get('admin/profile',[UserController::class,'profile'])->name('admin.profile')->middleware('auth');
+Route::post('update/{id}',[UserController::class,'update'])->name('update')->middleware('auth');
+
+
+
