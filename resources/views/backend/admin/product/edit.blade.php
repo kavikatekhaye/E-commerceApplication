@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Add Product</h4>
-                        
+
                         @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -32,7 +32,7 @@
 
                                     <div class="form-group">
                                         <label>Product Price:</label>
-                                        <input type="text" class="form-control border-input" placeholder="Price"id="price"value="{{$data->price}}" name="price">
+                                        <input type="number" class="form-control border-input" placeholder="Price"id="price"value="{{$data->price}}" name="price">
                                     </div>
 
                                     <div class="form-group">
@@ -53,7 +53,7 @@
 
                             </div>
                             <div class="">
-                                <button type="Update" class="btn btn-info btn-fill btn-wd"> Update Add Product</button>
+                                <button type="Update" class="btn btn-info btn-fill btn-wd"> Update Product</button>
                             </div>
                             <div class="clearfix"></div>
                             <script>

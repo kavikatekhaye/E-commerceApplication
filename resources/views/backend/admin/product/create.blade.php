@@ -18,10 +18,10 @@
                             </ul>
                         </div>
                       @endif
-                      
+
                     </div>
                     <div class="content">
-                        <form action="{{url('admin/product/store')}}" method="POST"enctype="multipart/form-data">
+                        <form action="{{url('admin/product/store')}}" method="POST" method="POST"enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
@@ -32,7 +32,7 @@
 
                                     <div class="form-group">
                                         <label>Product Price:</label>
-                                        <input type="text" class="form-control border-input" placeholder="Price"id="price"value="{{old('price')}}" name="price">
+                                        <input type="number" class="form-control border-input" placeholder="Price"id="price"value="{{old('price')}}" name="price">
                                     </div>
 
                                     <div class="form-group">
