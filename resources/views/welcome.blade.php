@@ -22,7 +22,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">LaravelShop</a>
+        <a class="navbar-brand" href="{{route('index')}}">LaravelShop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i> Cart <strong>(23)</strong>
+                    <a class="nav-link" href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i> Cart <strong>({{Cart::instance('default')->count()}})</strong>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
@@ -83,9 +83,15 @@
                     </p>
                 </div>
                 <div class="card-footer">
-                    <strong>$400.00</strong> &nbsp;
-                    <a href="" class="btn btn-primary btn-outline-dark"><i class="fa fa-cart-plus "></i> Add To
-                        Cart</a>
+                    <strong>{{$d->price}}</strong> &nbsp;
+                    <form action="{{url('cart/store')}}"method="POST">
+                        @csrf
+                        <input type="hidden" value="{{$d->id}}"name="id" />
+                        <input type="hidden" value="{{$d->name}}"name="name" />
+                        <input type="hidden" value="{{$d->price}}"name="price" />
+
+                   <button type="submit" class="btn btn-primary btn-outline-dark"><i class="fa fa-cart-plus"></i>Add To Cart</button>
+                    </form>
                 </div>
             </div>
         </div>

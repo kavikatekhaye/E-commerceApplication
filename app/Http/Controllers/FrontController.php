@@ -7,17 +7,27 @@ use  App\Models\Product;
 use App\Models\User;
 use Auth;
 use App\Http\Requests\Auth\LoginRequest;
-
+use Gloudemans\Shoppingcart\Facades\Cart;
 class FrontController extends Controller
 {
+
+    public function cart_store(Request $request)
+    {
+
+         Cart::add($request->id,$request->name,1,$request->price,550);
+         return redirect()->route('index');
+    }
+
+
     public function index (){
         $data = product::all();
     return view('welcome',compact('data'));
 }
 
 public function cart(){
-
-   return view('frontend.cart');
+    $data=Cart::instance('default')->content();
+    // dd($data);
+   return view('frontend.cart',compact('data'));
 }
 
 
@@ -75,6 +85,22 @@ public function profile_update(Request $request,$id){
     return redirect()->route('profile')->with('msg','Profile Updated Successfully!');
 
 }
+public function destroy(){
+    Cart::destroy();
+    return redirect()->route('index');
+}
 
+public function remove($rowId){
+
+Cart::remove($rowId);
+return redirect()->route('index');
+
+}
+public function checkout(){
+    $data=Cart::instance('default')->content();
+    // dd($data);
+   return view('frontend.check-out',compact('data'));
+
+}
 }
 

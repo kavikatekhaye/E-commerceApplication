@@ -6,10 +6,10 @@
 <!-- Page Content -->
 <div class="container">
 
-    <h2 class="mt-5"><i class="fa fa-shopping-cart"></i> Shooping Cart</h2>
+    <h2 class="mt-5"> <i class="fa fa-shopping-cart"></i> Shooping Cart</h2>
     <hr>
 
-    <h4 class="mt-5">4 items(s) in Shopping Cart</h4>
+    <h4 class="mt-5">{{Cart::instance('default')->count()}} items(s) in Shopping Cart</h4>
 
     <div class="cart-items">
 
@@ -20,16 +20,17 @@
                 <table class="table">
 
                     <tbody>
+                        @foreach ($data as $d)
 
                         <tr>
                             <td><img src="images/12.jpg" style="width: 5em"></td>
                             <td>
-                                <strong>Mac</strong><br> This is some text for the product
+                                <strong>{{$d->name}}</strong><br> This is some text for the product
                             </td>
 
                             <td>
 
-                                <a href="">Remove</a><br>
+                                <a href="{{route('cart.remove',$d->rowId)}}">Remove</a><br>
                                 <a href="">Save for later</a>
 
                             </td>
@@ -41,10 +42,12 @@
                                 </select>
                             </td>
 
-                            <td>$233</td>
+                        <td>Rs.{{$d->price}}</td>
                         </tr>
+                        @endforeach
 
-                        <tr>
+
+                        {{-- <tr>
                             <td><img src="images/01.jpg" style="width: 5em"></td>
                             <td>
                                 <strong>Laptop</strong><br> This is some text for the product
@@ -65,9 +68,9 @@
                             </td>
 
                             <td>$233</td>
-                        </tr>
+                        </tr> --}}
 
-                        <tr>
+                        {{-- <tr>
                             <td><img src="images/12.jpg" style="width: 5em"></td>
                             <td>
                                 <strong>Laptop</strong><br> This is some text for the product
@@ -88,7 +91,7 @@
                             </td>
 
                             <td>$233</td>
-                        </tr>
+                        </tr> --}}
 
                     </tbody>
 
@@ -106,23 +109,23 @@
                                 </thead>
                                     <tr>
                                         <td>Subtotal </td>
-                                        <td>12500.00 </td>
+                                        <td>{{Cart::subtotal()}} </td>
                                     </tr>
                                     <tr>
-                                        <td>Text</td>
-                                        <td>2133.00</td>
+                                        <td>Tax</td>
+                                        <td>{{Cart::tax()}}</td>
                                     </tr>
                                     <tr>
                                         <th>Total</th>
-                                        <th>1,8444</th>
+                                        <th>{{Cart::total()}}</th>
                                     </tr>
                              </table>
                          </div>
                     </div>
                 <!-- Save for later  -->
                 <div class="col-md-12">
-                    <button class="btn btn-outline-dark">Continue Shopping</button>
-                    <button class="btn btn-outline-info">Proceed to checkout</button>
+                    <a href="{{route('index')}}"><button class="btn btn-outline-dark">Continue Shopping</button> </a>
+                     <a href="{{route('checkout')}}"><button class="btn btn-outline-info">Proceed to checkout</button> </a>
                 <hr>
 
                 </div>

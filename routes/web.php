@@ -53,6 +53,7 @@ Route::get('admin/profile',[UserController::class,'profile'])->name('admin.profi
 Route::post('update/{id}',[UserController::class,'update'])->name('update')->middleware('auth');
 
 
+// FrontController
 Route::get('/',[FrontController::class,'index'])->name('index');
 Route::get('cart',[FrontController::class,'cart'])->name('cart');
 Route::get('signup',[FrontController::class,'signup'])->name('signup');
@@ -62,3 +63,7 @@ Route::post('/signin',[FrontController::class,'signin_store'])->name('signin.sto
 Route::get('/profile',[FrontController::class,'profile'])->name('profile');
 Route::post('profile/update/{id}',[FrontController::class,'profile_update'])->name('profile.update');
 
+Route::post('cart/store',[FrontController::class,'cart_store'])->name('cart.store');
+Route::get('cart/destroy',[FrontController::class,'destroy'])->name('cart.destroy');
+Route::get('cart/remove/{id}',[FrontController::class,'remove'])->name('cart.remove');
+Route::get('checkout',[FrontController::class,'checkout'])->name('checkout');
