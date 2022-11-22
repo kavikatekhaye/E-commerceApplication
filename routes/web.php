@@ -67,3 +67,4 @@ Route::post('cart/store',[FrontController::class,'cart_store'])->name('cart.stor
 Route::get('cart/destroy',[FrontController::class,'destroy'])->name('cart.destroy');
 Route::get('cart/remove/{id}',[FrontController::class,'remove'])->name('cart.remove');
 Route::get('checkout',[FrontController::class,'checkout'])->name('checkout');
+Route::POST('checkout/store',[FrontController::class,'checkout_store'])->name('checkout.store');

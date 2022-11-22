@@ -5,48 +5,46 @@
 
     <h2 class="mt-5"><i class="fa  fa-credit-card-alt"></i> Checkout</h2>
     <hr>
-
-
         <div class="row">
-
         <div class="col-md-7">
             <h4>Billing Details</h4>
 
-               <form>
+               <form action="{{route('checkout.store')}}" method="POST">
+                @csrf
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="email">Email</label>
-                      <input type="email" class="form-control" id="email" placeholder="Email">
+                      <input type="email" class="form-control" id="email" placeholder="Email"name="email">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="name">Name</label>
-                      <input type="text" class="form-control" id="name" placeholder="Password">
+                      <input type="text" class="form-control" id="name" placeholder="name" name="name">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+                    <input type="text" class="form-control" id="address" placeholder="address" name="address">
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-5">
                       <label for="city">City</label>
-                      <input type="text" class="form-control" id="city" placeholder="City">
+                      <input type="text" class="form-control" id="city" placeholder="City" name="city">
                     </div>
                     <div class="form-group col-md-4">
                       <label for="provance">Provance</label>
-                        <input type="text" class="form-control" id="provance" placeholder="Provance">
+                        <input type="text" class="form-control" id="provance" placeholder="Provance" name="provance">
                     </div>
                     <div class="form-group col-md-3">
                       <label for="postal">Postal</label>
-                      <input type="text" class="form-control" id="postal" placeholder="Postal">
+                      <input type="integer" class="form-control" id="postal" placeholder="Postal"name="postal">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="phone">Phone</label>
-                    <input type="text" class="form-control" id="phone" placeholder="Phone">
+                    <input type="integer" class="form-control" id="phone" placeholder="Phone" name="phone">
                   </div>
                   <hr>
-                  <h5><i class="fa fa-credit-card"></i> Payment Details</h5>
+                  {{-- <h5><i class="fa fa-credit-card"></i> Payment Details</h5>
 
                   <div class="form-group">
                     <label for="name_card">Name on card</label>
@@ -56,7 +54,7 @@
                   <div class="form-group">
                     <label for="card">Credit or debit card</label>
                     <input type="text" class="form-control" id="card" placeholder="Credit or debit card">
-                  </div>
+                  </div> --}}
 
                   <button type="submit" class="btn btn-outline-info col-md-12">Complete Order</button>
                 </form>
@@ -74,12 +72,19 @@
                         <th>Details</th>
                         <th>Qty</th>
                     </tr>
+
+
+
                     @foreach ($data as $d)
+                    <?php
+                        $data_new = App\Models\Product::find($d->id);
+                    ?>
 
                     <tr>
-                        <td><img src="images/01.jpg" alt="" style="width: 4em"></td>
+                        <td><img src="{{asset('uploads/'.$data_new->image)}}" alt="" style="width: 4em"></td>
                         <td>
                             <strong>{{$d->name}}</strong> <br>
+                            <span class="text-dark">{!!$data_new->description!!}</span>
                             <span class="text-dark">Rs.{{$d->price}}</span>
                         </td>
                         <td>

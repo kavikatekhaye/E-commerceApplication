@@ -18,6 +18,22 @@
     <link href="css/heroic-features.css" rel="stylesheet">
 
 </head>
+<div class="container">
+
+    {{-- @if (session()->has('msg'))
+    <div class="alert alert-sucess">
+       {{session()->get('msg')}}
+    </div>
+    @endif --}}
+
+ @if (session()->has('msg'))
+    <div class="alert alert-warning alert-dismissable">
+        {{session()->get('msg')}}
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+     </div>
+     @endif
+</div>
+
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -83,7 +99,7 @@
                     </p>
                 </div>
                 <div class="card-footer">
-                    <strong>{{$d->price}}</strong> &nbsp;
+                    <strong>Rs.{{$d->price}}</strong> &nbsp;
                     <form action="{{url('cart/store')}}"method="POST">
                         @csrf
                         <input type="hidden" value="{{$d->id}}"name="id" />

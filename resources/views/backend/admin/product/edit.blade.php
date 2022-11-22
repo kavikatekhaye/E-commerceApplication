@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <label>Product Description:</label>
                                         <textarea name="description" id="description" cols="30" rows="10"
-                                                  class="form-control border-input" placeholder="Product Description" value="{{$data->description}}">{!!$data->description!!}</textarea>
+                                                  class="form-control border-input" placeholder="Product Description" value="{!!$data->description!!}">{!!$data->description!!}</textarea>
                                     </div>
 
                                     <div class="form-group">
