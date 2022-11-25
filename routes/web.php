@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
  use App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\FrontController;
-
+use App\Http\Middleware\ValidateSignature;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,3 +68,4 @@ Route::get('cart/destroy',[FrontController::class,'destroy'])->name('cart.destro
 Route::get('cart/remove/{id}',[FrontController::class,'remove'])->name('cart.remove');
 Route::get('checkout',[FrontController::class,'checkout'])->name('checkout');
 Route::POST('checkout/store',[FrontController::class,'checkout_store'])->name('checkout.store');
+Route::patch('cart/update/{id}',[FrontController::class,'update'])->name('cart.update');

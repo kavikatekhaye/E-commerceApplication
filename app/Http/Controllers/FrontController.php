@@ -9,7 +9,10 @@ use Auth;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Order;
 use Gloudemans\Shoppingcart\Facades\Cart;
+
+use Validator;
 class FrontController extends Controller
+
 
 {
 
@@ -49,9 +52,10 @@ public function signup(){
     $data->name=$request->name;
     $data->email=$request->email;
     $data->password=bcrypt($request->password);
+    $data->roles=2;
     $data->address=$request->address;
     $data->save();
-    return redirect()->route('signup')->with('msg','Registered Successfully');
+    return redirect()->route('signin')->with('msg','Registered Successfully Signin Now!!');
  }
 
  public function signin(Request $request){
@@ -65,15 +69,37 @@ public function signup(){
  }
 
 
+
  public function signin_store(LoginRequest $request)
  {
-    $request->authenticate();
+     //    validate
 
-    $request->session()->regenerate();
+     $rules = [
+         'email'    => 'required|email',
+         'password' => 'required',
+     ];
 
-    return redirect()->route('index');
- }
+     $request->validate($rules);
+     // check if exists
+     $data = request(['email', 'password']);
+     $userExist = User::where('email',$data['email'])->where('roles',2)->count();
+     if($userExist == 1){
+        $request->authenticate();
 
+        $request->session()->regenerate();
+        return redirect()->route('index');
+
+     }else{
+        return redirect()->route('login');
+
+     }
+
+     if (!auth()->attempt($data)) {
+
+         return back()->with(["msg", "wrong details please try again"]);
+
+     }
+    }
 
 public function profile(){
     $user=Auth::User();
@@ -118,9 +144,27 @@ public function checkout_store(Request $request){
     $user->postal=$request->postal;
     $user->phone=$request->phone;
     $user->save();
-    Cart::destroy()->with('msg','Cart Destroy Successfully');
-    return redirect()->route('index',compact('user'));
+    Cart::destroy();
+    return redirect()->route('index',compact('user'))->with('msg','Order Placed Successfully');
 }
+
+public function update(Request $request,$id)
+    {
+        $validator = Validator::make($request->all(), [
+            'qty' => 'required|numeric|between: 1,5'
+        ]);
+
+        if ($validator->fails()) {
+            session()->flash('errors','Quantity must be between 1 and 5');
+            return response()->json(['success' => false]);
+        }
+
+        Cart::update($id, $request->qty);
+
+        session()->flash('msg','Quantity has been updated');
+
+        return response()->json(['success' => true]);
+    }
 
 
 

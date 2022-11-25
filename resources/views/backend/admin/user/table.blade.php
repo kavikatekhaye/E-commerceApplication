@@ -19,6 +19,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Address</th>
+                                        <th>Roles</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -30,6 +31,7 @@
                                         <td>{{$d->name}}</td>
                                         <td>{{$d->email}}</td>
                                         <td>{{$d->address}}</td>
+                                        <td>{{$d->roles}}</td>
                                         <td><span class="label label-success">Active</label></td>
                                         <td>
                                             <button class="btn btn-sm btn-success ti-close" title="Block User"></button>

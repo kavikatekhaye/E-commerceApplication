@@ -43,9 +43,11 @@
                                     </td>
 
                                     <td>
-                                        <select name="" id="" class="form-control" style="width: 4.7em">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
+                                        <select name="" id="" class="form-control qty" style="width: 4.7em" data-id={{ $d->rowId }}>
+                                            <option {{$d->qty == 1 ? 'selected' : ''}}>1</option>
+                                            <option {{$d->qty == 2 ? 'selected' : ''}}>2</option>
+                                            <option {{$d->qty == 3 ? 'selected' : ''}}>3</option>
+                                            <option {{$d->qty == 4 ? 'selected' : ''}}>4</option>
                                         </select>
                                     </td>
 
@@ -86,7 +88,14 @@
                 <!-- Save for later  -->
                 <div class="col-md-12">
                     <a href="{{ route('index') }}"><button class="btn btn-outline-dark">Continue Shopping</button> </a>
+
+                    @if(Auth::user())
                     <a href="{{ route('checkout') }}"><button class="btn btn-outline-info">Proceed to checkout</button> </a>
+
+                    @else
+                    <a href="{{ route('signin') }}"><button class="btn btn-outline-info col-md-2">Signin</button> </a>
+
+                    @endif
                     <hr>
 
                 </div>
@@ -115,12 +124,13 @@
                                     </td>
 
                                     <td>
-                                        <select name="" id="" class="form-control" style="width: 4.7em">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
+                                        <select name="" id="" class="form-control qty" style="width: 4.7em" data-id={{ $d->rowId }}>
+                                            <option {{$d->qty == 1 ? 'selected' : ''}}>1</option>
+                                            <option {{$d->qty == 2 ? 'selected' : ''}}>2</option>
+                                            <option {{$d->qty == 3 ? 'selected' : ''}}>3</option>
+                                            <option {{$d->qty == 4 ? 'selected' : ''}}>4</option>
                                         </select>
                                     </td>
-
                                     <td>Rs.{{ $d->price }}</td>
                                 </tr>
                         @endforeach
@@ -136,4 +146,25 @@
 
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        const className = document.querySelectorAll('.qty');
+        Array.from(className).forEach(function(el) {
+            el.addEventListener('change', function() {
+                const id = el.getAttribute('data-id');
+                axios.patch(`/cart/update/${id}`, {
+                        qty : this.value
+                    })
+                    .then(function(response) {
+                        location.reload();
+                    })
+                    .catch(function(error) {
+                        location.reload();
+                    });
+                console.log(id);
+            })
+        })
+    </script>
 @endsection

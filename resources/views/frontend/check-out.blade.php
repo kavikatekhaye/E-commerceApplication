@@ -88,7 +88,12 @@
                             <span class="text-dark">Rs.{{$d->price}}</span>
                         </td>
                         <td>
-                            <span class="badge badge-light">1</span>
+                            <select name="" id="" class="form-control qty" style="width: 4.7em" data-id={{ $d->rowId }}>
+                                <option {{$d->qty == 1 ? 'selected' : ''}}>1</option>
+                                            <option {{$d->qty == 2 ? 'selected' : ''}}>2</option>
+                                            <option {{$d->qty == 3 ? 'selected' : ''}}>3</option>
+                                            <option {{$d->qty == 4 ? 'selected' : ''}}>4</option>
+                                        </select>
                         </td>
                     </tr>
                     @endforeach
