@@ -69,3 +69,7 @@ Route::get('cart/remove/{id}',[FrontController::class,'remove'])->name('cart.rem
 Route::get('checkout',[FrontController::class,'checkout'])->name('checkout');
 Route::POST('checkout/store',[FrontController::class,'checkout_store'])->name('checkout.store');
 Route::patch('cart/update/{id}',[FrontController::class,'update'])->name('cart.update');
+
+Route::get('/cart/saveForLater/{id}', [FrontController::class, 'saveForLater'])->name('cart.saveForLater');
+Route::delete('/saveForLater/destroy/{id}', [FrontController::class, 'saveForLaterDestroy'])->name('cart.saveForLaterDestroy');
+Route::get('/cart/moveToCart/{id}', [FrontController::class, 'moveToCart'])->name('cart.moveToCart');

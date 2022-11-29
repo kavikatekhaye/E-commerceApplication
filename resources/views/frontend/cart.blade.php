@@ -1,12 +1,15 @@
 @extends('frontend.layouts.master')
 @section('content')
-
     <!-- Page Content -->
     <div class="container">
-
-
         <h2 class="mt-5"> <i class="fa fa-shopping-cart"></i> Shooping Cart</h2>
         <hr>
+        @if (session()->has('msg'))
+        <div class="alert alert-success alert-dismissable">
+            {{ session()->get('msg') }}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        </div>
+    @endif
 
         <h4 class="mt-5">{{ Cart::instance('default')->count() }} items(s) in Shopping Cart</h4>
 
@@ -21,33 +24,37 @@
 
                         <tbody>
                             @foreach ($data as $d)
-                            <?php
+                                <?php
                                 $data_new = App\Models\Product::find($d->id);
-                            ?>
+                                ?>
 
 
 
                                 <tr>
-                                    <td><img src="{{asset('uploads/'.$data_new->image)}}" style="width: 5em"></td>
+                                    <td><img src="{{ asset('uploads/' . $data_new->image) }}" style="width: 5em"></td>
                                     <td>
                                         <strong>{{ $d->name }}</strong><br>
-                                        <span class="text-dark">{!!$data_new->description!!}</span>
+                                        <span class="text-dark">{!! $data_new->description !!}</span>
 
                                     </td>
 
                                     <td>
-
-                                        <a href="{{ route('cart.remove', $d->rowId) }}">Remove</a><br>
-                                        <a href="">Save for later</a>
+                                        <form action={{ route('cart.destroy', $d->rowId) }} method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <a href="{{ route('cart.remove', $d->rowId) }}">Remove</a><br>
+                                        </form>
+                                        <a href="{{ route('cart.saveForLater', $d->rowId) }}">Save for later</a>
 
                                     </td>
 
                                     <td>
-                                        <select name="" id="" class="form-control qty" style="width: 4.7em" data-id={{ $d->rowId }}>
-                                            <option {{$d->qty == 1 ? 'selected' : ''}}>1</option>
-                                            <option {{$d->qty == 2 ? 'selected' : ''}}>2</option>
-                                            <option {{$d->qty == 3 ? 'selected' : ''}}>3</option>
-                                            <option {{$d->qty == 4 ? 'selected' : ''}}>4</option>
+                                        <select name="" id="" class="form-control qty" style="width: 4.7em"
+                                            data-id={{ $d->rowId }}>
+                                            <option {{ $d->qty == 1 ? 'selected' : '' }}>1</option>
+                                            <option {{ $d->qty == 2 ? 'selected' : '' }}>2</option>
+                                            <option {{ $d->qty == 3 ? 'selected' : '' }}>3</option>
+                                            <option {{ $d->qty == 4 ? 'selected' : '' }}>4</option>
                                         </select>
                                     </td>
 
@@ -89,12 +96,11 @@
                 <div class="col-md-12">
                     <a href="{{ route('index') }}"><button class="btn btn-outline-dark">Continue Shopping</button> </a>
 
-                    @if(Auth::user())
-                    <a href="{{ route('checkout') }}"><button class="btn btn-outline-info">Proceed to checkout</button> </a>
-
+                    @if (Auth::user())
+                        <a href="{{ route('checkout') }}"><button class="btn btn-outline-info">Proceed to checkout</button>
+                        </a>
                     @else
-                    <a href="{{ route('signin') }}"><button class="btn btn-outline-info col-md-2">Signin</button> </a>
-
+                        <a href="{{ route('signin') }}"><button class="btn btn-outline-info col-md-2">Signin</button> </a>
                     @endif
                     <hr>
 
@@ -102,38 +108,46 @@
 
                 <div class="col-md-12">
 
-                    <h4>{{ Cart::instance('default')->count() }} items Save for Later</h4>
-                    <table class="table">
-                        @foreach ($data as $d)
-                            <tbody>
+                    <h4>{{ Cart::instance('saveForLater')->count() }} items Save for Later</h4>
 
+                    <table class="table">
+                        <tbody>
+                        <tbody>
+                            @foreach (Cart::instance('saveForLater')->content() as $d)
+                                <tr>
+                                    @php
+                                        $data_new = App\Models\Product::find($d->id);
+                                    @endphp
 
 
                                 <tr>
-                                    <td><img src="{{asset('uploads/'.$data_new->image)}}" style="width: 5em"></td>
+                                    <td><img src="{{ asset('uploads/' . $data_new->image) }}" style="width: 5em"></td>
                                     <td>
                                         <strong>{{ $d->name }}</strong><br>
-                                                       <span class="text-dark">{!!$data_new->description!!}</span>
+                                        <span class="text-dark">{!! $data_new->description !!}</span>
                                     </td>
 
                                     <td>
-
-                                        <a href="{{ route('cart.remove', $d->rowId) }}">Remove</a><br>
-                                        <a href="">Add To Cart</a>
+                                        <form action={{ route('cart.saveForLaterDestroy', $d->rowId) }} method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-link btn-large">Remove</button><br>
+                                            <a href="{{ route('cart.moveToCart', $d->rowId) }}">Move to Cart</a>
 
                                     </td>
 
                                     <td>
-                                        <select name="" id="" class="form-control qty" style="width: 4.7em" data-id={{ $d->rowId }}>
-                                            <option {{$d->qty == 1 ? 'selected' : ''}}>1</option>
-                                            <option {{$d->qty == 2 ? 'selected' : ''}}>2</option>
-                                            <option {{$d->qty == 3 ? 'selected' : ''}}>3</option>
-                                            <option {{$d->qty == 4 ? 'selected' : ''}}>4</option>
+                                        <select name="" id="" class="form-control qty" style="width: 4.7em"
+                                            data-id={{ $d->rowId }}>
+                                            <option {{ $d->qty == 1 ? 'selected' : '' }}>1</option>
+                                            <option {{ $d->qty == 2 ? 'selected' : '' }}>2</option>
+                                            <option {{ $d->qty == 3 ? 'selected' : '' }}>3</option>
+                                            <option {{ $d->qty == 4 ? 'selected' : '' }}>4</option>
                                         </select>
                                     </td>
                                     <td>Rs.{{ $d->price }}</td>
                                 </tr>
-                        @endforeach
+                            @endforeach
 
 
                         </tbody>
@@ -155,7 +169,7 @@
             el.addEventListener('change', function() {
                 const id = el.getAttribute('data-id');
                 axios.patch(`/cart/update/${id}`, {
-                        qty : this.value
+                        qty: this.value
                     })
                     .then(function(response) {
                         location.reload();

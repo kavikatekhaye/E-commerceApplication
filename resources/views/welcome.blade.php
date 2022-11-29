@@ -27,7 +27,7 @@
     @endif --}}
 
  @if (session()->has('msg'))
-    <div class="alert alert-warning alert-dismissable">
+    <div class="alert alert-success alert-dismissable">
         {{session()->get('msg')}}
         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
      </div>
