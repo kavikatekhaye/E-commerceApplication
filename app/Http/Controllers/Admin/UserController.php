@@ -11,7 +11,7 @@ use Auth;
 class UserController extends Controller
 {
     public function table(){
-        $data = User::paginate(3);
+        $data = User::get();
         return view('backend.admin.user.table',compact('data'));
      }
 public function detail($id){

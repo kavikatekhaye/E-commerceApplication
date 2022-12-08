@@ -73,3 +73,6 @@ Route::patch('cart/update/{id}',[FrontController::class,'update'])->name('cart.u
 Route::get('/cart/saveForLater/{id}', [FrontController::class, 'saveForLater'])->name('cart.saveForLater');
 Route::delete('/saveForLater/destroy/{id}', [FrontController::class, 'saveForLaterDestroy'])->name('cart.saveForLaterDestroy');
 Route::get('/cart/moveToCart/{id}', [FrontController::class, 'moveToCart'])->name('cart.moveToCart');
+
+
+

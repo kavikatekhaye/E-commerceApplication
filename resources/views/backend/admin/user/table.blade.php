@@ -12,7 +12,7 @@
                                 <p class="category">List of all registered users</p>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-striped">
+                                <table class="table table-striped" id="myTable">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
@@ -44,7 +44,7 @@
                                     </tbody>
 
                                 </table>
-                                {{$data->links()}}
+                                {{-- {{$data->links()}} --}}
                             </div>
                         </div>
                     </div>
@@ -52,3 +52,11 @@
             </div>
         </div>
         @endsection
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready( function () {
+            $('#myTable').DataTable({
+            // "order":[[1,"desc"]]
+            });
+        });
+        </script>

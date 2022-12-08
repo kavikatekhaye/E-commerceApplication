@@ -60,11 +60,7 @@ public function signup(){
 
  public function signin(Request $request){
 
-    // $request->authenticate();
-
-    // $request->session()->regenerate();
-
-    // return redirect()->route('/');
+ 
     return view('frontend.sign-in');
  }
 

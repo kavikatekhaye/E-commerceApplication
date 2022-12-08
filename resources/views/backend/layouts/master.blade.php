@@ -22,6 +22,13 @@
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
 
     <link href="{{asset('css/themify-icons.css')}}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
+
+
 
 </head>
 <body>
@@ -139,6 +146,6 @@
 
 </body>
 
-<script src="{{asset('js/jquery-1.10.2.js')}}" type="text/javascript"></script>
+{{-- <script src="{{asset('js/jquery-1.10.2.js')}}" type="text/javascript"></script> --}}
 <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
 </html>

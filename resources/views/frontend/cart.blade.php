@@ -55,6 +55,13 @@
                                             <option {{ $d->qty == 2 ? 'selected' : '' }}>2</option>
                                             <option {{ $d->qty == 3 ? 'selected' : '' }}>3</option>
                                             <option {{ $d->qty == 4 ? 'selected' : '' }}>4</option>
+                                            {{-- <option {{ $d->qty == 5 ? 'selected' : '' }}>5</option>
+                                            <option {{ $d->qty == 6 ? 'selected' : '' }}>6</option>
+                                            <option {{ $d->qty == 7 ? 'selected' : '' }}>7</option>
+                                            <option {{ $d->qty == 8 ? 'selected' : '' }}>8</option>
+                                            <option {{ $d->qty == 9 ? 'selected' : '' }}>9</option>
+                                            <option {{ $d->qty == 10 ? 'selected' : '' }}>10</option> --}}
+
                                         </select>
                                     </td>
 
