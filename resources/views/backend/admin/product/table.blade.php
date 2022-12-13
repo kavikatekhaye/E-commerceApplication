@@ -13,45 +13,30 @@
                     </div>
                     @endif
 
-                    <div class="col-md-11">
+                    <div class="col-md-10">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">All Products</h4>
                                 <p class="category"> </p>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-striped" id="myTable">
+
+                                <table class="table table-striped" id="datatable1">
                                     <thead>
                                     <tr>
                                         <th> Product ID</th>
                                         <th> Product Name</th>
                                         <th> Product Price</th>
                                         <th> Product Desc</th>
-                                        <th>Product Image</th>
-                                        <th> ProductActions</th>
+                                         <th>Product Image</th>
+                                        <th> Product Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $d)
-                                    <tr>
-                                        <td>{{$d->id}}</td>
-                                        <td>{{$d->name}}</td>
-                                        <td>{{$d->price}}</td>
-                                        <td>{!!$d->description!!}</td>
-                                        <td><img src="{{asset('uploads/'.$d->image)}}" alt="" class="img-thumbnail"
-                                                 style="width: 50px"></td>
-                                        <td>
-                                           <a href="{{route('admin.product.edit',$d->id)}}"><button class="btn btn-sm btn-info ti-pencil-alt"  title="Edit"></button></a>
-                                           <a href="{{route('admin.product.delete',$d->id)}}"> <button class="btn btn-sm btn-danger ti-trash" title="Delete"></button></a>
-                                            <a href="{{route('admin.product.detail',$d->id)}}"><button class="btn btn-sm btn-primary ti-view-list-alt" title="Details"></button></a>
 
-                                        </td>
-
-                                    </tr>
-                                    @endforeach
                                     </tbody>
                                 </table>
-                                {{-- {{$data->links()}} --}}
+
 
                             </div>
                         </div>
@@ -62,14 +47,48 @@
 
 
         @endsection
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script >
+  $(document).ready( function () {
+    $('#datatable1').DataTable({
+        "processing":true,
+        "serverSide":true,
+        "ajax":"{{route('admin.product.table')}}",
+        "columns":[{
+            "data":"id",
+            "name":"id"
+        },
+        {
+            "data":"name",
+            "name":"name"
+        },
+        {
+            "data":"price",
+            "name":"price"
+        },
+        {
+            "data":"description",
+            "name":"description"
 
-        <script>
-            $(document).ready( function () {
-            $('#myTable').DataTable({
-            // "order":[[1,"desc"]]
-            });
-        });
-        </script>
+
+        },
+        {
+            "data":"getImage",
+            "name":"getImage"
+
+        },
+        
+        {
+            "data":"action",
+            "name":"action"
+        },
+
+
+    ],
+
+    });
+} );
+</script>
 
 

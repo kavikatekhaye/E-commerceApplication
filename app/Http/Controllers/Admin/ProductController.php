@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use DataTables;
 
 class ProductController extends Controller
 {
@@ -37,10 +38,10 @@ class ProductController extends Controller
        $data->save();
        return redirect()->route('admin.product.table')->with('msg','Date Inserted Successfully!');
     }
-       public function table(){
-        $data=Product::get();
-        return view('backend.admin.product.table',compact('data'));
-    }
+    //    public function table(){
+    //     $data=Product::get();
+    //     return view('backend.admin.product.table',compact('data'));
+    // }
 public function edit($id){
         $data=Product::find($id);
         return view('backend.admin.product.edit',compact('data'));
@@ -82,4 +83,31 @@ public function edit($id){
         return view('backend.admin.product.detail',compact('data'));
 
     }
+    public function table(Request $request){
+        if($request->ajax()){
+         $users = Product::get();
+         return DataTables::of($users)
+         ->addColumn('action',function($user){
+            $btn='<a href="edit/'.$user->id .'" type="button" class="btn btn-sm btn-info ti-pencil-alt" title="Edit"> </a>
+            <a href="delete/'.$user->id .'" type="button" class="btn btn-sm btn-danger ti-trash" title="delete">  <br>
+            </a> <a href="detail/'.$user->id .'" type="button" class="btn btn-sm btn-primary ti-view-list-alt" title="Detail"></a>';
+              return  $btn;
+             })
+             ->editColumn('description',function($user){
+                return $user->description;
+             })
+             ->addColumn('getImage', function($user){
+                if($user->image){
+                  $url=asset("uploads/" .$user->image);
+                  return '<img src='.$url.' border="0" width="40px" class="img-rounded" align="center"/>';
+              }else{
+                  $url=asset("/uploads/no-image.png");
+                  return '<img src='.$url.' border="0" width="40px" class="img-rounded" align="center"/>';
+              }
+            })
+            ->rawColumns(['getImage', 'action'])->make(true);
+
+        }
+        return view('backend.admin.product.table',);
+     }
 }
