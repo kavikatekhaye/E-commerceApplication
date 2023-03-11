@@ -14,6 +14,7 @@ class OrderController extends Controller
 //     // dd($data);
 //     return view('backend.admin.order.table',compact('data'));
 //  }
+
  public function detail($id){
     $data=Order::find($id);
     return view('backend.admin.order.detail',compact('data'));

@@ -11,12 +11,15 @@
 
                <form action="{{route('checkout.store')}}" method="POST">
                 @csrf
+                <input type="hidden" value="1" name="product_id" />
+                <input type="hidden" value="1" name="quantity" />
+
                   <div class="form-row">
-                    <div class="form-group col-md-6">
+                    {{-- <div class="form-group col-md-6">
                       <label for="email">Email</label>
                       <input type="email" class="form-control" id="email" placeholder="Email"name="email">
-                    </div>
-                    <div class="form-group col-md-6">
+                    </div> --}}
+                    <div class="form-group col-md-12">
                       <label for="name">Name</label>
                       <input type="text" class="form-control" id="name" placeholder="name" name="name">
                     </div>
@@ -80,6 +83,7 @@
                         $data_new = App\Models\Product::find($d->id);
                     ?>
 
+
                     <tr>
                         <td><img src="{{asset('uploads/'.$data_new->image)}}" alt="" style="width: 4em"></td>
                         <td>
@@ -96,6 +100,7 @@
                                         </select>
                         </td>
                     </tr>
+
                     @endforeach
                 </table>
 
@@ -118,10 +123,32 @@
 
                     </tr>
 
-
                 </table>
 
             </div>
         </div>
 
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        const className = document.querySelectorAll('.qty');
+        Array.from(className).forEach(function(el) {
+            el.addEventListener('change', function() {
+                const id = el.getAttribute('data-id');
+                axios.patch(`/cart/update/${id}`, {
+                        qty: this.value
+                    })
+                    .then(function(response) {
+                        location.reload();
+                    })
+                    .catch(function(error) {
+                        location.reload();
+                    });
+                console.log(id);
+            })
+        })
+    </script>
+

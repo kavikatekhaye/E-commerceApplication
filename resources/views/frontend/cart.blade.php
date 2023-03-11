@@ -155,8 +155,6 @@
                                     <td>Rs.{{ $d->price }}</td>
                                 </tr>
                             @endforeach
-
-
                         </tbody>
 
                     </table>

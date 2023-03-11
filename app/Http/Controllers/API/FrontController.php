@@ -40,6 +40,7 @@ class FrontController extends Controller
         $data->roles = 2;
         $data->address = $request->address;
         $data->save();
+       
         $response = [
             "success" => true,
             "data" => $data,
@@ -63,7 +64,7 @@ class FrontController extends Controller
      // check if exists
      $data = request(['email', 'password']);
      $userExist = User::where('email',$data['email'])->count();
-    
+
     }
 
 public function profile(){

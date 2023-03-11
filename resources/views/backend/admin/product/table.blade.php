@@ -1,6 +1,4 @@
 
-
-
 @extends('backend.layouts.master')
 @section('content')
 
@@ -13,7 +11,7 @@
                     </div>
                     @endif
 
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">All Products</h4>
@@ -70,21 +68,15 @@
         {
             "data":"description",
             "name":"description"
-
-
         },
         {
             "data":"getImage",
             "name":"getImage"
-
         },
-        
         {
             "data":"action",
             "name":"action"
         },
-
-
     ],
 
     });

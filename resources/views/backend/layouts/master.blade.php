@@ -135,7 +135,7 @@
                 <div class="copyright pull-right">
                     &copy;
                     <script>document.write(new Date().getFullYear())</script>
-                    , made with <i class="fa fa-heart heart"></i> by <a href="">Javed</a>
+                    , made with <i class="fa fa-heart heart"></i> by <a href="">Kavi</a>
                 </div>
             </div>
         </footer>

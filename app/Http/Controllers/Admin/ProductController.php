@@ -52,8 +52,6 @@ public function edit($id){
                     'name' => 'required',
                     'price' => 'required',
                     'description' => 'required',
-
-
                 ]);
 
                 $data=Product::find($id);
